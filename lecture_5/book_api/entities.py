@@ -1,8 +1,23 @@
+from pydantic import BaseModel
+
+
 class Books():
-    def __init__(self, title: str, author: str, year: int):
+
+    def __int__(self):
+        pass
+    def __init__(self, title: str | None, author: str | None, year: int | None, id: int = None):
+        self._id = id
         self._title = title
         self._author = author
         self._year = year
+
+    @property
+    def id(self):
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        self._id = id
 
     @property
     def title(self):
@@ -28,4 +43,7 @@ class Books():
     def year(self, year):
         self._year = year
 
-
+class BookUpdate(BaseModel):
+    title: str | None = None
+    author: str | None = None
+    year: int | None = None
